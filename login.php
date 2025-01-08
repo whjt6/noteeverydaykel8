@@ -75,18 +75,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         nav a {
             margin: 0 15px;
             text-decoration: none;
-            color: white; /* Warna teks putih */
+            color: #fff; /* Warna teks putih */
             padding: 10px 15px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Bayangan teks */
         }
         nav a:hover {
-            color: rgba(255, 255, 255, 0.8); /* Warna putih sedikit transparan saat hover */
+            color: rgba(7, 7, 7, 0.8); /* Warna putih sedikit transparan saat hover */
         }
         .form-container {
             max-width: 400px;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(250, 247, 247, 0.95);
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
@@ -97,6 +97,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+        .form-container label {
+            color: #333; /* Warna label hitam untuk kontras */
         }
         .login-button {
             display: flex;
@@ -118,11 +121,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .register-link {
             text-align: center;
             margin-top: 15px;
-            color: white; /* Warna teks putih untuk kontras */
+            color: #fff; /* Warna teks putih untuk kontras */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Bayangan teks */
         }
         .register-link a {
-            color: white; /* Warna teks link register tetap putih */
+            color: #fff; /* Warna teks link register tetap putih */
             text-decoration: none;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Bayangan lebih jelas pada teks link */
         }
