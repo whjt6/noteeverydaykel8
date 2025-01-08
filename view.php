@@ -23,7 +23,7 @@ include 'header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Catatan - Note Everyday</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -38,6 +38,7 @@ include 'header.php';
             text-align: center;
             margin: 20px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-family: 'Montserrat', sans-serif;
         }
         .welcome-message {
             text-align: center;
@@ -47,70 +48,103 @@ include 'header.php';
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
         .search-container, .create-note {
-            background-color: rgba(76, 175, 80, 0.3);
-            border-radius: 5px;
-            padding: 10px;
+            background-color: rgba(76, 175, 80, 0.6);
+            border-radius: 8px;
+            padding: 15px;
             margin: 20px auto;
-            max-width: 90%; /* Mengubah lebar maksimum agar lebih responsif */
+            max-width: 90%;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
         }
-        .create-note a {
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .create-note a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+        .search-container:hover, .create-note:hover {
+            transform: scale(1.02);
         }
         .search-container input {
             padding: 10px;
-            border: 1px solid #ccc;
+            border: none;
             border-radius: 5px;
-            width: 70%; /* Lebar input yang lebih responsif */
+            width: 70%;
             margin-right: 10px;
-            box-sizing: border-box; /* Menghitung padding dalam lebar */
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+        .search-container input:focus {
+            outline: none;
+            border: 2px solid #5cb85c;
         }
         .search-container button {
             background-color: #5cb85c;
             color: white;
             border: none;
-            padding: 10px 15px; /* Menyesuaikan padding tombol */
+            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            width: 25%; /* Lebar tombol yang lebih responsif */
+            width: 25%;
+            transition: background-color 0.3s;
         }
         .search-container button:hover {
             background-color: #4cae4c;
         }
         .table-container {
-            max-width: 90%; /* Mengubah lebar maksimum agar lebih responsif */
+            max-width: 90%;
             margin: 20px auto;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             padding: 20px;
-            overflow-x: auto; /* Memungkinkan scroll horizontal untuk tabel */
+            overflow-x: auto;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: auto; /* Agar kolom menyesuaikan lebar */
+            table-layout: auto;
         }
         th, td {
-            padding: 10px;
+            padding: 15px;
             text-align: left;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #ddd;
             color: #333;
         }
         th {
             background-color: #f1f1f1;
             color: #333;
+            font-weight: 600;
         }
         tr:hover {
             background-color: #f9f9f9;
+            transition: background-color 0.3s;
         }
+        .action-links a {
+            color: #5cb85c;
+            margin-right: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .action-links a:hover {
+            color: #4cae4c;
+        }
+        .full-content {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: rgba(100, 100, 100, 0.1);
+        }
+        .toggle-link {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .toggle-link.more {
+            color: #28A745; /* Warna untuk "lihat lebih sedikit" */
+        }
+        .toggle-link.less {
+            color: #007BFF; /* Warna untuk "lihat selengkapnya" */
+        }
+
         footer {
             text-align: center;
             margin-top: 20px;
@@ -123,42 +157,36 @@ include 'header.php';
         /* Media Queries untuk Responsivitas */
         @media (max-width: 768px) {
             .search-container input {
-                width: 60%; /* Mengurangi lebar input pada layar kecil */
-                margin-right: 5px; /* Mengurangi margin kanan pada input */
+                width: 60%;
+                margin-right: 5px;
             }
             .search-container {
-                flex-direction: column; /* Mengatur elemen dalam kolom */
-                align-items: center; /* Menyelaraskan elemen di tengah */
+                flex-direction: column;
+                align-items: center;
             }
             .search-container button {
-                width: 90%; /* Membuat tombol memenuhi lebar */
-                margin-top: 10px; /* Ruang antara input dan tombol */
-            }
-            .table-container {
-                padding: 15px; /* Mengurangi padding pada tabel untuk layar kecil */
-            }
-            th, td {
-                padding: 8px; /* Mengurangi padding pada tabel */
+                width: 90%;
+                margin-top: 10px;
             }
         }
 
         @media (max-width: 480px) {
             h2 {
-                font-size: 24px; /* Mengurangi ukuran font judul */
+                font-size: 24px;
             }
             .welcome-message {
-                font-size: 1.2em; /* Mengurangi ukuran font pesan sambutan */
+                font-size: 1.2em;
             }
             .search-container input {
-                width: 100%; /* Memperlebar input agar memenuhi layar */
-                margin-right: 0; /* Menghilangkan margin kanan pada input */
+                width: 100%;
+                margin-right: 0;
             }
             .search-container button {
-                width: 100%; /* Membuat tombol memenuhi lebar */
-                padding: 12px; /* Mengubah padding tombol untuk layar kecil */
+                width: 100%;
+                padding: 12px;
             }
             .create-note a {
-                padding: 12px 20px; /* Mengubah padding tautan untuk layar kecil */
+                padding: 12px 20px;
             }
         }
     </style>
@@ -186,11 +214,22 @@ include 'header.php';
                 <?php while ($entry = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($entry['title']); ?></td>
-                        <td><?php echo htmlspecialchars($entry['content']); ?></td>
-                        <td><?php echo htmlspecialchars($entry['created_at']); ?></td>
                         <td>
-                            <a href="edit.php?id=<?php echo $entry['id']; ?>">Edit</a>
-                            <a href="delete.php?id=<?php echo $entry['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus catatan ini?');">Hapus</a>
+                            <?php
+                            $content = htmlspecialchars($entry['content']);
+                            if (strlen($content) > 55) {
+                                $preview = substr($content, 0, 55) . '... ';
+                                echo $preview . '<span class="toggle-link less" onclick="toggleContent(this)">lihat selengkapnya</span>';
+                                echo '<div class="full-content">' . $content . '<br><span class="toggle-link more" onclick="toggleContent(this)"></div>';
+                            } else {
+                                echo $content;
+                            }
+                            ?>
+                        </td>
+                        <td><?php echo htmlspecialchars($entry['created_at']); ?></td>
+                        <td class="action-links">
+                            <a href="edit.php?id=<?php echo $entry['id']; ?>"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="delete.php?id=<?php echo $entry['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus catatan ini?');"><i class="fas fa-trash"></i> Hapus</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -208,12 +247,19 @@ include 'header.php';
             rows.forEach(row => {
                 const title = row.cells[0].textContent.toLowerCase();
                 const content = row.cells[1].textContent.toLowerCase();
-                if (title.includes(input) || content.includes(input)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                row.style.display = (title.includes(input) || content.includes(input)) ? '' : 'none';
             });
+        }
+
+        function toggleContent(link) {
+            const fullContent = link.parentNode.querySelector('.full-content');
+            if (fullContent.style.display === 'none' || fullContent.style.display === '') {
+                fullContent.style.display = 'block';
+                link.textContent = 'lihat lebih sedikit';
+            } else {
+                fullContent.style.display = 'none';
+                link.textContent = 'lihat selengkapnya';
+            }
         }
     </script>
     <div style="text-align: center; margin-top: 20px;">
