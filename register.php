@@ -65,18 +65,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-decoration: none;
             color: white; /* Warna teks putih */
             padding: 10px 15px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Bayangan teks */
+            text-shadow: 1px 1px 2px rgba(12, 12, 12, 0.7); /* Bayangan teks */
         }
         nav a:hover {
-            color: rgba(255, 255, 255, 0.8); /* Warna putih sedikit transparan saat hover */
+            color: rgba(7, 7, 7, 0.8); /* Warna putih sedikit transparan saat hover */
         }
         .form-container {
             max-width: 400px;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(245, 241, 241, 0.95);
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(7, 7, 7, 0.3);
         }
         .form-container input[type="text"],
         .form-container input[type="password"],
@@ -86,6 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+        .form-container label {
+            color: #000; /* Mengubah warna label menjadi hitam */
         }
         .register-button {
             display: flex;
@@ -147,8 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="submit" value="Register">
             </div>
             <div class="login-link">
-            <p>Sudah punya akun? <a href="login.php">Login</a></p>
-        </div>
+                <p>Sudah punya akun? <a href="login.php">Login</a></p>
+            </div>
         </form>
     </div>
 
